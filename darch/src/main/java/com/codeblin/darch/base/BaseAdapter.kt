@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.codeblin.darch.base.managers.AdapterDelegateManager
+import com.codeblin.darch.managers.AdapterDelegateManager
 
 abstract class BaseAdapter : ListAdapter<BaseModel, BaseViewHolder>(
     AsyncDifferConfig.Builder(

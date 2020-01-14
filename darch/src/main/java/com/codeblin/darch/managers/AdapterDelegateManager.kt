@@ -1,4 +1,4 @@
-package com.codeblin.darch.base.managers
+package com.codeblin.darch.managers
 
 import android.util.Log
 import android.view.ViewGroup
