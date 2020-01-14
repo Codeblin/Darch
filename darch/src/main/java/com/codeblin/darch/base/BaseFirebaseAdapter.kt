@@ -10,9 +10,9 @@ abstract class BaseFirebaseAdapter(options: FirebaseRecyclerOptions<BaseModel?>)
 
     protected val delegateManager = AdapterDelegateManager()
 
-    @Suppress("UNCHECKED_CAST")
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) =
-        delegateManager.bindDelegate(getItem(position), holder)
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int, data: BaseModel) {
+        delegateManager.bindDelegate(data, holder)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
         delegateManager.createDelegate(parent, viewType)
