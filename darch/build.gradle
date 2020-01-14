@@ -29,7 +29,7 @@ android {
 publish {
     def groupProjectID = 'com.codeblin.darch'
     def artifactProjectID = 'Darch'
-    def publishVersionID = '0.2.0'
+    def publishVersionID = '0.2.1'
 
     userOrg = 'stamatisstiliatis'
     repoName = 'Darch'
