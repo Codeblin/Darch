@@ -37,7 +37,7 @@ publish {
     artifactId = artifactProjectID
     publishVersion = publishVersionID
     desc = 'Mvvm architecture component library'
-    website = 'https://github.com/Codeblin/ObjectPreference'
+    website = 'https://github.com/Codeblin/Darch'
 }
 
 dependencies {
