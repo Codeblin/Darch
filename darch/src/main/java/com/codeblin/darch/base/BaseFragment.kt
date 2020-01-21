@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 
-abstract class BaseFragment<TOutput : BaseModel, TViewModel : BaseViewModel<TOutput>> : Fragment() {
+abstract class BaseFragment<TViewModel : BaseViewModel> : Fragment() {
 
     abstract val viewModel: TViewModel
 
     abstract fun getLayout(): Int
     abstract fun initialization()
-    abstract fun render(data: ViewState<TOutput>)
+    abstract fun render(data: ViewState)
 
     open fun observeEvents(){}
 

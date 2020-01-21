@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 
-abstract class BaseActivity<TOutput : BaseModel, TViewModel : BaseViewModel<TOutput>> : SimpleActivity() {
+abstract class BaseActivity<TViewModel : BaseViewModel> : SimpleActivity() {
 
     abstract val viewModel: TViewModel
 
-    abstract fun render(viewState: ViewState<TOutput>)
+    abstract fun render(viewState: ViewState)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

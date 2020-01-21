@@ -9,11 +9,11 @@ import java.lang.ClassCastException
 import java.lang.Exception
 
 class AdapterDelegateManager {
-    private val delegates = mutableListOf<BaseAdapterDelegate<BaseModel>>()
+    private val delegates = mutableListOf<BaseAdapterDelegate>()
 
-    fun <T : BaseModel> add(delegate: BaseAdapterDelegate<T>) {
+    fun add(delegate: BaseAdapterDelegate) {
         try {
-            val unwrapped = delegate as? BaseAdapterDelegate<BaseModel>
+            val unwrapped = delegate as? BaseAdapterDelegate
             if (unwrapped != null) {
                 delegates.add(unwrapped)
             }

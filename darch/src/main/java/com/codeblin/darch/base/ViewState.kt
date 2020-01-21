@@ -1,26 +1,13 @@
 package com.codeblin.darch.base
 
-import java.lang.Exception
+sealed class ViewState
 
-enum class States{
-    FINISHED,
-    LOADING,
-    ERROR
-}
+object Loading: ViewState()
 
-data class ViewStateData<T: BaseModel>(val items: List<T> = listOf(), val error: Exception = Exception())
+object NoData: ViewState()
 
-class ViewState<T: BaseModel> {
-    val state: States
-    val result: ViewStateData<T>
+class HasListData<out T: BaseModel>(val data: List<T>): ViewState()
 
-    constructor(state: States, result: ViewStateData<T>){
-        this.state = state
-        this.result = result
-    }
+class HasData<out T: BaseModel>(val data: T): ViewState()
 
-    constructor(){
-        state = States.FINISHED
-        result = ViewStateData()
-    }
-}
+class Error(val message: String): ViewState()

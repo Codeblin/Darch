@@ -1,21 +1,27 @@
 package com.codeblin.darch.base
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 
-abstract class BaseViewModel<T: BaseModel>(protected val app: Application): AndroidViewModel(app){
-    protected val dataStream = MutableLiveData<ViewState<T>>()
-    protected var viewStates: ViewState<T> = ViewState()
+abstract class BaseViewModel: ViewModel(){
+    protected val dataStream = MutableLiveData<ViewState>()
+    protected var viewStates: ViewState = Loading
         set(value) {
             field = value
             dataStream.postValue(field)
         }
 
-    fun observe(owner: LifecycleOwner, observer: Observer<ViewState<T>>){
+    /** Observe the data stream forever. Mostly for test cases */
+    fun observeForever(owner: LifecycleOwner, observer: Observer<ViewState>){
         dataStream.observe(owner, observer)
+    }
+
+    fun observe(owner: LifecycleOwner, observer: Observer<ViewState>){
+        dataStream.observe(owner, observer)
+    }
+
+    fun stopObserve(owner: LifecycleOwner){
+        dataStream.removeObservers(owner)
     }
 
     open fun postData(){
@@ -23,19 +29,6 @@ abstract class BaseViewModel<T: BaseModel>(protected val app: Application): Andr
     }
 
     open fun postLoading(){
-        dataStream.postValue(ViewState(States.LOADING, ViewStateData()))
-    }
-}
-
-abstract class StateViewModel(protected val app: Application): AndroidViewModel(app){
-    protected val stateStream = MutableLiveData<States>()
-    protected var state: States = States.FINISHED
-        set(value) {
-            field = value
-            stateStream.postValue(field)
-        }
-
-    fun observe(owner: LifecycleOwner, observer: Observer<States>){
-        stateStream.observe(owner, observer)
+        dataStream.postValue(Loading)
     }
 }
